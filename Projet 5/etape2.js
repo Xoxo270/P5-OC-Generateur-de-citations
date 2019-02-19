@@ -5,12 +5,6 @@ const morceau1 = ["Le grand chat","Le gros chien","La girafe","L'élephant","Le 
 const morceau2 = ["a mangé","mangera","mange","aime manger"];
 const morceau3 = ["de l'herbe.","d'autres animaux.","des insectes.","sa progéniture.","des êtres humains."];
 
-const item1 = morceau1[Math.floor(Math.random() * morceau1.length)];
-
-const item2 = morceau2[Math.floor(Math.random() * morceau2.length)];
-
-const item3 = morceau3[Math.floor(Math.random() * morceau3.length)];
-
 /* 2ème générateur de citations */
 const morceau4 = ["Je deviendrais","Tu deviendras","Il deviendra"];
 const morceau5 = ["le roi","le meilleur","le plus fort"];
