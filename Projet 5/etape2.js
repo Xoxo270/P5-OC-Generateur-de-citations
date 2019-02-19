@@ -1,53 +1,72 @@
-/* déclaration des variables/constantes de citations */
+const generators = [
+    // FirstGen
+    {
+      subjects: [
+        "Le grand chat",
+        "Le gros chien",
+        "La girafe",
+        "L'élephant",
+        "Le jaguar",
+      ],
+      verbs: [
+        "a mangé",
+        "mangera",
+        "mange",
+        "aime manger",
+      ],
+      complements: [
+        "de l'herbe.",
+        "d'autres animaux.",
+        "des insectes.",
+        "sa progéniture.",
+        "des êtres humains.",
+      ],
+    },
+    // SecondGen
+    {
+      subjects: [
+        "Je deviendrais",
+        "Tu deviendras",
+        "Il deviendra",
+      ],
+      verbs: [
+        "le roi",
+        "le meilleur",
+        "le plus fort",
+      ],
+      complements: [
+        "des pirates",
+        "des ninjas",
+        "des gladiateurs",
+      ],
+    },
+  ];
 
-/* 1er générateur de citations */
-const morceau1 = ["Le grand chat","Le gros chien","La girafe","L'élephant","Le jaguar"];
-const morceau2 = ["a mangé","mangera","mange","aime manger"];
-const morceau3 = ["de l'herbe.","d'autres animaux.","des insectes.","sa progéniture.","des êtres humains."];
-
-/* 2ème générateur de citations */
-const morceau4 = ["Je deviendrais","Tu deviendras","Il deviendra"]
-const morceau5 = ["le roi","le meilleur","le plus fort"]
-const morceau6 = ["des pirates","des ninjas","des gladiateurs"]
-
-/* Prompt générateur 
 
 
-let choixGenerateur = prompt("Voulez-vous utiliser le générateur de citation 1 ou 2 ?");
-  
+/* constantes utilisateur */
 
- Prompt nombre de citations 
+const choixGenerateur = parseInt(prompt("Voulez-vous utiliser le générateur de citation 1 ou 2 ?"), 10) - 1;
+const nombreCitations = parseInt(prompt("Choisissez un nombre de citations compris entre 1 et 5 :"), 10);
 
-let nombreCitations = prompt("Choisissez un nombre de citations compris entre 1 et 5 :")
-*/
+/* Validation de l'entrée utilisateur */
 
+if ((choixGenerateur !== 0 && choixGenerateur !== 1)
+    || (nombreCitations === NaN || nombreCitations < 1 || nombreCitations > 5)) {
+  throw new Error('Invalid input');
+}
 
+/* Stockage des tailles */
 
+const subjectsLength = generators[choixGenerateur].subjects.length;
+const verbsLength = generators[choixGenerateur].verbs.length;
+const complementsLength = generators[choixGenerateur].complements.length;
 
-let choixGenerateur = prompt("Voulez-vous utiliser le générateur de citation 1 ou 2 ?");
-let nombreCitations = prompt("Choisissez un nombre de citations compris entre 1 et 5 :");
-console.log(choixGenerateur)
-console.log(nombreCitations)
-    for (nombreCitations = 0; nombreCitations < 0; nombreCitations++){
-        if (choixGenerateur == 1) {
-            const item1 = morceau1[Math.floor(Math.random() * morceau1.length)];
-        
-            const item2 = morceau2[Math.floor(Math.random() * morceau2.length)];
-        
-            const item3 = morceau3[Math.floor(Math.random() * morceau3.length)];
-            
-            console.log(`${item1} ${item2} ${item3}`);
-    }
-    else{
-            const item4 = morceau4[Math.floor(Math.random() * morceau4.length)];
-        
-            const item5 = morceau5[Math.floor(Math.random() * morceau5.length)];
-        
-            const item6 = morceau6[Math.floor(Math.random() * morceau6.length)];
-            
-            console.log(`${item4} ${item5} ${item6}`)};
-    
-    };
+/* Boucle */
 
-    
-    
+for (i = 0; i < nombreCitations; i++) {
+    const subject = generators[choixGenerateur].subjects[Math.floor(Math.random() * (subjectsLength - 1)) + 1];
+    const verb = generators[choixGenerateur].verbs[Math.floor(Math.random() * (verbsLength - 1)) + 1];
+    const complement = generators[choixGenerateur].complements[Math.floor(Math.random() * (complementsLength - 1)) + 1];
+    console.log(`${subject} ${verb} ${complement}`);
+  }
