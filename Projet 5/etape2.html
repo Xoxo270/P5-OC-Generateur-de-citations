@@ -4,10 +4,40 @@
 <head>
     <meta charset="utf-8">
     <title>Générateur de citations : Etape 2</title>
+    <style type="text/css">
+        body{
+            background: #333333;
+            color: white;
+        }
+        #emplacement-citation{
+            background: mediumpurple;
+            color: #black;
+            height: 200px;
+            width: 200px;
+        }
+    </style>
 </head>
-
 <body>
-    <script src="etape2.js"></script>
+<h1>Bienvenue dans mon générateur de citations</h1>
+
+<form id="myForm" action="etape2.html">
+    <div class="nombreCitations">
+        <input id="nombreCitations" type="number" min="1" max="5" value="1"/>
+        <label for="nombreCitations"> Combien de citations voulez-vous générer ? (1 à 5).</label>
+    </div>
+
+    <div class="choixGenerateur">
+        <input type="radio" id="1" class="choix_generateur1" value="1" checked /><label for="1">Générateur 1</label>
+        <input type="radio" id="2" class="choix_generateur2" value="2" /><label for="2">Générateur 2</label>
+    </div>
+
+    <input id="submitButton" type="submit" value="Générer des citations" />
+</form>
+
+<div id="emplacement-citation"></div>
+
+
+<script src="etape2.js"></script>
 </body>
 
 </html>
