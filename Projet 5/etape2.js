@@ -1,5 +1,5 @@
 const generators = [
-    // FirstGen
+  /* FirstGen */
     {
       subjects: [
         "Le grand chat",
@@ -22,7 +22,7 @@ const generators = [
         "des êtres humains.",
       ],
     },
-    // SecondGen
+  /* SecondGen */
     {
       subjects: [
         "Je deviendrais",
@@ -42,31 +42,50 @@ const generators = [
     },
   ];
 
+/* Récupération du bouton de soumission */
+const button = document.getElementById("submitButton");
 
+/* Ecouteur d'évenement clic */
+button.addEventListener("click", (e) => {
+  const emplacementCitation = document.getElementById("emplacement-citation");
+
+/* Vider les anciennes citations */
+  emplacementCitation.innerHTML = "";
+
+/* On supprime le comportement par défaut du bouton de soumission */
+  e.preventDefault();
 
 /* constantes utilisateur */
+  const nombreCitations = document.getElementById("nombreCitations").value;
+  const choixGenerateur = document.getElementsByName('choixGenerateur');
+  let choixGenerateur_value;
 
-const choixGenerateur = parseInt(prompt("Voulez-vous utiliser le générateur de citation 1 ou 2 ?"), 10) - 1;
-const nombreCitations = parseInt(prompt("Choisissez un nombre de citations compris entre 1 et 5 :"), 10);
+/* On récupère la valeur du bouton radio */
+  for(let i = 0; i < choixGenerateur.length; i++){
+    if(choixGenerateur[i].checked){
+      choixGenerateur_value = parseInt(choixGenerateur[i].value);
+    }
+  }
 
 /* Validation de l'entrée utilisateur */
-
-if ((choixGenerateur !== 0 && choixGenerateur !== 1)
-    || (nombreCitations === NaN || nombreCitations < 1 || nombreCitations > 5)) {
-  throw new Error('Invalid input');
-}
+  if ((choixGenerateur_value !== 0 && choixGenerateur_value !== 1)
+      || (nombreCitations === NaN || nombreCitations < 1 || nombreCitations > 5)) {
+    throw new Error('Invalid input');
+  }
 
 /* Stockage des tailles */
+  const subjectsLength = generators[choixGenerateur_value].subjects.length;
+  const verbsLength = generators[choixGenerateur_value].verbs.length;
+  const complementsLength = generators[choixGenerateur_value].complements.length;
 
-const subjectsLength = generators[choixGenerateur].subjects.length;
-const verbsLength = generators[choixGenerateur].verbs.length;
-const complementsLength = generators[choixGenerateur].complements.length;
+/* Récupération de la citation */
+  for (i = 0; i < nombreCitations; i++) {
+    const subject = generators[choixGenerateur_value].subjects[Math.floor(Math.random() * (subjectsLength - 1)) + 1];
+    const verb = generators[choixGenerateur_value].verbs[Math.floor(Math.random() * (verbsLength - 1)) + 1];
+    const complement = generators[choixGenerateur_value].complements[Math.floor(Math.random() * (complementsLength - 1)) + 1];
+    const citation = "<p>"+`${subject} ${verb} ${complement}`+"</p>";
 
-/* Boucle */
-
-for (i = 0; i < nombreCitations; i++) {
-    const subject = generators[choixGenerateur].subjects[Math.floor(Math.random() * (subjectsLength - 1)) + 1];
-    const verb = generators[choixGenerateur].verbs[Math.floor(Math.random() * (verbsLength - 1)) + 1];
-    const complement = generators[choixGenerateur].complements[Math.floor(Math.random() * (complementsLength - 1)) + 1];
-    console.log(`${subject} ${verb} ${complement}`);
+/* Affichage de la citation sur le bloc HTML ciblé */
+    emplacementCitation.innerHTML += citation;
   }
+});

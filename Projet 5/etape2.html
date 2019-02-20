@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="fr">
 
 <head>
     <meta charset="utf-8">
@@ -8,12 +8,40 @@
         body{
             background: #333333;
             color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 90vh;
         }
         #emplacement-citation{
-            background: mediumpurple;
+            background: #107bdb;
             color: black;
-            height: 200px;
-            width: 200px;
+            height: 40%;
+            width: 50%;
+            margin-top: 20px;
+        }
+        div#emplacement-citation p {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 5px;
+        }
+        #nombreCitations{
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+        #blockChoixGenerateur{
+            padding-top: 5px;
+            padding-bottom: 5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        #submitButton{
+            margin-top: 5px;
+            margin-bottom: 5px;
         }
     </style>
 </head>
@@ -26,12 +54,13 @@
         <label for="nombreCitations"> Combien de citations voulez-vous générer ? (1 à 5).</label>
     </div>
 
-    <div class="choixGenerateur">
-        <input type="radio" id="1" class="choix_generateur1" value="1" checked /><label for="1">Générateur 1</label>
-        <input type="radio" id="2" class="choix_generateur2" value="2" /><label for="2">Générateur 2</label>
+    <div class="choixGenerateur" id="blockChoixGenerateur">
+        <input type="radio" id="0" name="choixGenerateur" class="choix_generateur1" value="0" checked /><label for="0">Générateur 1</label>
+        <input type="radio" id="1" name="choixGenerateur" class="choix_generateur2" value="1" /><label for="1">Générateur 2</label>
     </div>
 
     <input id="submitButton" type="submit" value="Générer des citations" />
+    <input id="stopButton" type="submit" value="Arrêter le programme"/>
 </form>
 
 <div id="emplacement-citation"></div>
